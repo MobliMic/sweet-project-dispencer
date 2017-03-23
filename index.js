@@ -3,10 +3,10 @@ motor = new Gpio(10, {mode: Gpio.OUTPUT});
 var url = require('url');
 
 // servo disk release point
-var centerPoint = 1000;
+centerPoint = 1000;
 
 // servo state
-var currentLocation = 0;
+currentLocation = 500;
 
 // on run reset the servo
 motor.servoWrite(currentLocation);
@@ -27,18 +27,19 @@ var http = require('http');
 var port = 80;
 
 var reqHand = function(req, res) {
-  var queryData = url.parse(request.url, true).query;
-  console.log(queryData);
-
-  if(currentLocation <= centerPoint){
-    currentLocation = centerPoint + 800;
-  } else {
-    currentLocation = centerPoint - 800;
+  if (req.url === '/favicon.ico') {
+    res.writeHead(200, {'Content-Type': 'image/x-icon'} );
+    res.end();
+    console.log('favicon requested');
+    return;
   }
 
-  if(currentLocation < 0){
-    currentLocation = 0;
-  } else if (currentLocation > 2000) {
+  var queryData = url.parse(req.url, true).query;
+  console.log(queryData);
+
+  if(currentLocation >= centerPoint){
+    currentLocation = 500;
+  } else if (currentLocation < centerPoint) {
     currentLocation = 2000;
   }
 
@@ -46,7 +47,7 @@ var reqHand = function(req, res) {
     currentLocation = queryData.pos;
     console.log(queryData.pos);
   }
-
+  console.log(currentLocation);
   motor.servoWrite(currentLocation);
 
   res.end('acknowledged commander!');
