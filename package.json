@@ -1,0 +1,23 @@
+{
+  "name": "sweet-project-dispencer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "pigpio": "^0.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MobliMic/sweet-project-dispencer.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MobliMic/sweet-project-dispencer/issues"
+  },
+  "homepage": "https://github.com/MobliMic/sweet-project-dispencer#readme"
+}
