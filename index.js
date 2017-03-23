@@ -40,7 +40,7 @@ var reqHand = function(req, res) {
   if(currentLocation >= centerPoint){
     currentLocation = 500;
   } else if (currentLocation < centerPoint) {
-    currentLocation = 2000;
+    currentLocation = 1800;
   }
 
   if(queryData.pos){
@@ -50,6 +50,7 @@ var reqHand = function(req, res) {
   console.log(currentLocation);
   motor.servoWrite(currentLocation);
 
+  res.writeHead(200, {'Content-Type': 'text/plain'} );
   res.end('acknowledged commander!');
 }
 
